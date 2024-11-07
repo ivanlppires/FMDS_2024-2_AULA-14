@@ -8,6 +8,7 @@ const router = Router();
  * /client:
  *   get:
  *    summary: Retorna todos os clientes
+ *    tags: [Clients]
  *    description: Retorna uma lista com todos os clientes
  *    parameters:
  *       - in: query
@@ -50,6 +51,28 @@ router.get('/', ClientController.getClients); // read all
 router.get('/:id', ClientController.getClient); // read 
 router.post('/', ClientController.addClient); // create
 router.put('/', ClientController.updateClient); // update
+
+/**
+ * @swagger
+ * /client/{id}:
+ *   delete:
+ *     summary: Remove um cliente pelo ID
+ *     tags: [Clients]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID do cliente a ser deletado
+ *     responses:
+ *       200:
+ *         description: Cliente removido com sucesso
+ *       404:
+ *         description: Cliente não encontrado
+ *       500:
+ *         description: Erro no servidor
+ */
 router.delete('/:id', ClientController.deleteClient); // delete
 
 export default router;
